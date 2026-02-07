@@ -11,9 +11,14 @@ import {
   Menu,
 } from "lucide-react";
 
-export default function Chat({ initialMessages }: any) {
-  const [messages, setMessages] = useState(
-    initialMessages.map((m: any) => ({ role: m.role, content: m.content }))
+interface Message {
+  role: string;
+  content: string;
+}
+
+export default function Chat({ initialMessages }: { initialMessages: Message[] }) {
+  const [messages, setMessages] = useState<Message[]>(
+    initialMessages.map((m: Message) => ({ role: m.role, content: m.content }))
   );
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
@@ -99,7 +104,7 @@ export default function Chat({ initialMessages }: any) {
         </header>
 
         <section className="flex-1 overflow-y-auto px-8 py-10 space-y-8">
-          {messages.map((m: any, i: number) => (
+          {messages.map((m: Message, i: number) => (
             <div
               key={i}
               className={`flex gap-4 ${
