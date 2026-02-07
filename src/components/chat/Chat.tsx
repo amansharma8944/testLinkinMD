@@ -34,7 +34,8 @@ export default function Chat({ initialMessages }: { initialMessages: Message[] }
     if (!input.trim()) return;
 
     const userMsg = { role: "user", content: input };
-    setMessages((m) => [...m, userMsg]);
+ setMessages((m: Message[]) => [...m, userMsg]);
+
     setInput("");
     setLoading(true);
 
